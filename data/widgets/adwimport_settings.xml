@@ -1,0 +1,17 @@
+<!-- ASEPRITE -->
+<!-- Copyright (C) 2001-2013 by David Capello -->
+<gui>
+<window text="Animation Settings" id="adwimport_settings">
+  <grid columns="4">
+
+    <check text="Animation" id="check_anim" selected="true" />
+
+    <separator horizontal="true" cell_hspan="4" />
+
+    <box horizontal="true" homogeneous="true" cell_hspan="4" cell_align="right">
+      <button text="&amp;OK" closewindow="true" id="ok" magnet="true" minwidth="60" />
+      <button text="&amp;Cancel" closewindow="true" />
+    </box>
+  </grid>
+</window>
+</gui>

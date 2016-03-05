@@ -212,6 +212,19 @@ FileOp* FileOp::createLoadDocumentOperation(Context* context, const char* filena
   if (flags & FILE_LOAD_ONE_FRAME)
     fop->m_oneframe = true;
 
+  // Configure output format?
+  if (fop->m_format->support(FILE_SUPPORT_GET_FORMAT_OPTIONS_LOAD)) {
+    base::SharedPtr<FormatOptions> format_options =
+      fop->m_format->getFormatOptionsLoad(fop);
+
+    // Does the user cancelled the operation?
+    if (!format_options)
+      return nullptr;
+
+    fop->m_seq.format_options = format_options;
+    //fop->m_document->setFormatOptions(format_options);
+  }
+
 done:;
   return fop.release();
 }

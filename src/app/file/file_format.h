@@ -28,6 +28,7 @@
 #define FILE_SUPPORT_FRAME_TAGS         0x00001000
 #define FILE_SUPPORT_BIG_PALETTES       0x00002000 // Palettes w/more than 256 colors
 #define FILE_SUPPORT_PALETTE_WITH_ALPHA 0x00004000
+#define FILE_SUPPORT_GET_FORMAT_OPTIONS_LOAD 0x00008000
 
 namespace app {
 
@@ -62,6 +63,9 @@ namespace app {
     base::SharedPtr<FormatOptions> getFormatOptions(FileOp* fop) {
       return onGetFormatOptions(fop);
     }
+    base::SharedPtr<FormatOptions> getFormatOptionsLoad(FileOp* fop) {
+      return onGetFormatOptionsLoad(fop);
+    }
 
     // Returns true if this file format supports the given flag.
     bool support(int f) const {
@@ -81,6 +85,9 @@ namespace app {
     virtual void onDestroyData(FileOp* fop) { }
 
     virtual base::SharedPtr<FormatOptions> onGetFormatOptions(FileOp* fop) {
+      return base::SharedPtr<FormatOptions>(0);
+    }
+    virtual base::SharedPtr<FormatOptions> onGetFormatOptionsLoad(FileOp* fop) {
       return base::SharedPtr<FormatOptions>(0);
     }
 
