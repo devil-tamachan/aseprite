@@ -302,13 +302,16 @@ bool AdwFormat::_loadADW_ver2(FileOp *fop, FILE* fp)
         if (m_btAType == 3)
         {
           m_btATypePrev = m_btAType;
-          for (int l = 0; l < sublayers.size(); l++)
+          if (bAnim)
           {
-            Cel *cel = sublayers[l]->cel(frameNum);
-            if (cel)static_cast<LayerImage*>(sublayers[l])->removeCel(cel);
+            for (int l = 0; l < sublayers.size(); l++)
+            {
+              Cel *cel = sublayers[l]->cel(frameNum);
+              if (cel)static_cast<LayerImage*>(sublayers[l])->removeCel(cel);
+            }
+            subcels.clear();
+            continue;
           }
-          subcels.clear();
-          if (bAnim)continue;
           else layer->setFlags(static_cast<LayerFlags>(2));
         }
         base::UniquePtr<Cel> cel;
