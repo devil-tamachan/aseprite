@@ -346,7 +346,13 @@ bool AdwFormat::_loadADW_ver2(FileOp *fop, FILE* fp)
           for(int l=0;l<subcels.size();l++)
           {
             frameNum2 = startFrameNum;
-            for(int k = bSubLinkSkip ? 1 : 0;k<m_wAnimCnt;k++)
+            int k=0;
+            if(bSubLinkSkip)
+            {
+              k++;
+              frameNum2++;
+            }
+            for(;k<m_wAnimCnt;k++)
             {
               cel2.reset(Cel::createLink(subcels[l]));
               cel2->setFrame(frameNum2-1);
@@ -359,7 +365,13 @@ bool AdwFormat::_loadADW_ver2(FileOp *fop, FILE* fp)
           for (int l = 0; l < bgcels.size(); l++)
           {
             frameNum2 = startFrameNum;
-            for (int k = bBGLinkSkip ? 1 : 0; k < m_wAnimCnt; k++)
+            int k=0;
+            if(bBGLinkSkip)
+            {
+              k++;
+              frameNum2++;
+            }
+            for (; k < m_wAnimCnt; k++)
             {
               cel2.reset(Cel::createLink(bgcels[l]));
               cel2->setFrame(frameNum2 - 1);
