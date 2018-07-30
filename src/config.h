@@ -14,7 +14,9 @@
 // In MSVC
 #ifdef _MSC_VER
   // Avoid warnings about insecure standard C++ functions
+  #ifndef _CRT_SECURE_NO_WARNINGS
   #define _CRT_SECURE_NO_WARNINGS
+  #endif
 
   // Disable warning C4355 in MSVC: 'this' used in base member initializer list
   #pragma warning(disable:4355)
@@ -22,7 +24,7 @@
 
 // General information
 #define PACKAGE "Aseprite"
-#define VERSION "1.1.2-dev"
+#define VERSION "1.1.3-dev"
 
 #ifdef CUSTOM_WEBSITE_URL
 #define WEBSITE                 CUSTOM_WEBSITE_URL // To test web server
